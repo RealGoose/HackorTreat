@@ -15,6 +15,6 @@ We take in info from Craigslist, pennysaver, etc about garage sales and then we 
 
 # Notes
 
-this seems like a pretty advanced project because we will most likely have to work with JSON responses from Craigslist (maybe not), and some Radar.io usage (locations and maps API that we will definitely use)
+this seems like a pretty advanced project because we will most likely have to work with JSON responses from Craigslist (maybe not), and some Radar.io usage (locations and maps API that we will definitely use). I have used some of this in the past but probably not to this degree.
 
 I hope u are ready because this seems like a great challenge!
