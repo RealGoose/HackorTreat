@@ -3,6 +3,11 @@
 # Our Idea
 We take in info from Craigslist, pennysaver, etc about garage sales and then we figure out the best route for you to take to max the numbers of sales you can go to
 
+# Current Jobs:
+
+Alim: Make a simple ip address to physical location app (will be ready on 10/25)
+
+Franz: Review Python (edit this one as u go)
 
 # Steps
 
