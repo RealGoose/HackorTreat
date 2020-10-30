@@ -1,7 +1,6 @@
 import http.client
 import mimetypes
 import json
-from hospital import getHospList
 import requests
 from requests import get
 
@@ -39,8 +38,8 @@ def mainStructure():
     data = res.read().decode("utf-8")
     json_data = json.loads(data)
 
-    print('1',json_data["address"]["latitude"])
-    print('2',json_data["address"]["longitude"])
+    print('latitude:',json_data["address"]["latitude"])
+    print('longitude:',json_data["address"]["longitude"])
 
     #FUCK this is hard, ignore all of the stuff below I will walk u through it during the call
 
