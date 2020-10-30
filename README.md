@@ -5,9 +5,9 @@ We take in info from Craigslist, pennysaver, etc about garage sales and then we 
 
 # Current Jobs:
 
-Alim: Make a simple ip address to physical location app (will be ready on 10/25)
+Alim: Also look into Craigslist and other shops where you can extract address of the sales using API. + fix my crappy code + look into Radar.io and other route-making APIs
 
-Franz: Review Python (edit this one as u go)
+Franz: Look into Craigslist and other shops where you can extract address of the sales using API.
 
 # Steps
 
