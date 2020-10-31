@@ -8,12 +8,13 @@ We take in info from Craigslist, pennysaver, etc about garage sales and then we 
 Alim: Also look into Craigslist and other shops where you can extract address of the sales using API. + fix my crappy code + look into Radar.io and other route-making APIs
 
 Franz: Look into Craigslist and other shops where you can extract address of the sales using API.
-
+          UPDATE: 1:00 10/31    No luck on the API, RSS may work for Craigslist. Started using other sites and they don't have api's so I just webscrapped
 # Steps
 
-1. Retrieve user's physical address from their IP address
-2. Find sales in their city and sort by distance
-3. Get the addresses of the top 3/5/7 sales (number of sales can be an input if we want)
+1. Retrieve user's physical address from their IP address                                     DONE
+2. Find sales in their city                                                                   DONE
+2.5 Sort sales by distance                                                                    HALF DONE
+3. Get the addresses of the top 3/5/7 sales (number of sales can be an input if we want)       
 4. Make a route through all of them
 5. Simple UI
 6. Profit
