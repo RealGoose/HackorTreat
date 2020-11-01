@@ -1,14 +1,7 @@
-################################################################################
-#Franz Kieviet
-#franzkieviet@gmail.com
-#10/31/2020
-#This builds a simple UI for the user to use
-################################################################################
-
 from tkinter import *
 window = Tk()
 
-window.geometry("1000x350")
+window.geometry("1000x700")
 window.title("Garage Sales 4 You")
 window.configure(bg='light blue')
 
@@ -184,6 +177,40 @@ dayInput=day.get()
 monthInput=month.get()
 yearInput=year.get()
 
+tableOfAddressesHEADER = Label(window,  
+        bg="white",
+        fg= "light blue",
+        width=200,
+        height=-1,
+        text="LIST OF THE ADDRESSES:",
+        anchor='w',
+        justify="center") 
+tableOfAddressesHEADER.place(x=0, y=400)
+tableOfAddressesHEADER.config(font =("Helvetica", 16, "bold"))
+
+tableOfAddresses = Label(window,  
+        fg="white",
+        bg= "light blue",
+        width=200,
+        height=-1,
+        text="HOME #1",
+        anchor='w',
+        justify="center") 
+tableOfAddresses.place(x=0, y=600)
+
+tableOfAddressesFooter = Label(window,  
+        bg="white",
+        fg= "light blue",
+        width=200,
+        height=-1,
+        text="Link to Google Map:",
+        anchor='w',
+        justify="center") 
+tableOfAddressesFooter.place(x=0, y=670)
+tableOfAddressesFooter.config(font =("Helvetica", 16, "bold"))
+
+
+
 def Clicked(buttonStatus):
     if buttonStatus==1:
         print("1")
@@ -193,6 +220,7 @@ def Clicked(buttonStatus):
         print("3")
     elif buttonStatus==4:
         print("4")
+        
 
 
 window.mainloop() 
