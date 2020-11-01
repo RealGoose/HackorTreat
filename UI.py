@@ -181,9 +181,11 @@ submit.config(font =("Helvetica", 16, "bold"))
 
 
 #############################################   USER INPUTS:
+
 dayInput=day.get()
 monthInput=month.get()
 yearInput=year.get()
+date=str(yearInput)+"-"+str(monthInput)+"-"+str(dayInput)
 numSales = 5
 
 tableOfAddressesHEADER = Label(window,  
