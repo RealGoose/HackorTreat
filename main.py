@@ -15,9 +15,10 @@ def mainStructure():
 
     #Latitude and Longtitude of the User's IP address:
     url = "http://ip-api.com/json/"+ ip + "?fields=lat,lon"  
-    zipCode = "http://ip-api.com/json/"+ ip + "?fields=zip"
+    #zipCode = "http://ip-api.com/json/"+ ip + "?fields=zip"
     payload = {}
     headers= {}
+    
 
     response = requests.request("GET", url, headers=headers, data = payload)
     printable_response = str(response).strip("\'b")
@@ -40,7 +41,7 @@ def mainStructure():
     #print('longitude:',json_data["address"]["longitude"])
 
     #getAddressList(json_data["address"]["latitude"], json_data["address"]["longitude"])
-    location, short_address = WebScrapper(zipCode, json_data["address"]["latitude"], json_data["address"]["longitude"])
+    location, short_address = WebScrapper(92620, json_data["address"]["latitude"], json_data["address"]["longitude"])
 
     #short_address = getAddressList(json_data["address"]["latitude"], json_data["address"]["longitude"])
     shortAddressIWillUseInTheUI =[]
