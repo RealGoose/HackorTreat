@@ -2,7 +2,7 @@ import http.client
 import mimetypes
 import json
 import requests
-import apiCalls
+from GarageSaleScrapper import *
 from apiCalls import getAddressList
 from requests import get
 
@@ -14,13 +14,14 @@ def mainStructure():
     print('Your public IP address is: {}\n'.format(ip))
 
     #Latitude and Longtitude of the User's IP address:
-    url = "http://ip-api.com/json/"+ ip + "?fields=lat,lon"
+    url = "http://ip-api.com/json/"+ ip + "?fields=lat,lon"  
+    zipCode = "http://ip-api.com/json/"+ ip + "?fields=zip"
     payload = {}
     headers= {}
 
     response = requests.request("GET", url, headers=headers, data = payload)
     printable_response = str(response).strip("\'b")
-    #print(response.text.encode('utf8'))
+    #print('\n\n', payload)
 
     #Actual Radar query:
     conn = http.client.HTTPSConnection("api.radar.io")
@@ -35,19 +36,20 @@ def mainStructure():
     res = conn.getresponse()
     data = res.read().decode("utf-8")
     json_data = json.loads(data)
-    print('latitude:',json_data["address"]["latitude"])
-    print('longitude:',json_data["address"]["longitude"])
+    #print('latitude:',json_data["address"]["latitude"])
+    #print('longitude:',json_data["address"]["longitude"])
 
-    getAddressList(json_data["address"]["latitude"], json_data["address"]["longitude"])
+    #getAddressList(json_data["address"]["latitude"], json_data["address"]["longitude"])
+    location, short_address = WebScrapper(zipCode, json_data["address"]["latitude"], json_data["address"]["longitude"])
 
-
-    short_address = getAddressList(json_data["address"]["latitude"], json_data["address"]["longitude"])
+    #short_address = getAddressList(json_data["address"]["latitude"], json_data["address"]["longitude"])
     shortAddressIWillUseInTheUI =[]
     print('\n')
     
-    for i in range(5):
+    for i in range(len(short_address)):
         a = str(short_address[i]).find(",")
         shortAddressIWillUseInTheUI.append(short_address[i][0:a])
+        #print(shortAddressIWillUseInTheUI)
     print('All addresses:', short_address)
     return shortAddressIWillUseInTheUI
 
