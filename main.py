@@ -6,7 +6,7 @@ from GarageSaleScrapper import *
 from apiCalls import getAddressList
 from requests import get
 
-def mainStructure():
+def mainStructure(numSales):
     # Python Program to Get IP Address
 
     #Users ip address:
@@ -41,10 +41,10 @@ def mainStructure():
     #print('longitude:',json_data["address"]["longitude"])
 
     #getAddressList(json_data["address"]["latitude"], json_data["address"]["longitude"])
-    location, short_address = WebScrapper(92620, json_data["address"]["latitude"], json_data["address"]["longitude"])
+    location, short_address = WebScrapper(92620, json_data["address"]["latitude"], json_data["address"]["longitude"], numSales)
 
     #short_address = getAddressList(json_data["address"]["latitude"], json_data["address"]["longitude"])
     print('\n')
     print('All addresses:', short_address)
 
-mainStructure()
+    return short_address
