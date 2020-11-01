@@ -1,3 +1,11 @@
+################################################################################
+#Franz Kieviet
+#franzkieviet@gmail.com
+#10/31/2020
+#This builds a simple UI for the user to use
+################################################################################
+from main import mainStructure
+import webbrowser
 from tkinter import *
 window = Tk()
 
@@ -176,6 +184,7 @@ submit.config(font =("Helvetica", 16, "bold"))
 dayInput=day.get()
 monthInput=month.get()
 yearInput=year.get()
+numSales = 5
 
 tableOfAddressesHEADER = Label(window,  
         bg="white",
@@ -198,29 +207,49 @@ tableOfAddresses = Label(window,
         justify="center") 
 tableOfAddresses.place(x=0, y=600)
 
+location = mainStructure(numSales)
+
+print(location)
+
+
+locationWithPlus=[]
+for i in range(5):
+    for home in location:
+        home.replace(' ', '+')
+        home = str(home) + '\\'
+        locationWithPlus.append(home)
+    webbrowser.open('https://www.google.com/maps/dir/' + locationWithPlus[i])
+
+
 tableOfAddressesFooter = Label(window,  
         bg="white",
         fg= "light blue",
         width=200,
         height=-1,
-        text="Link to Google Map:",
+        text="Link to Google Map:" + 'https://www.google.com/maps/dir/' + locationWithPlus[0],
         anchor='w',
         justify="center") 
 tableOfAddressesFooter.place(x=0, y=670)
 tableOfAddressesFooter.config(font =("Helvetica", 16, "bold"))
-
-
+numSales = 5
 
 def Clicked(buttonStatus):
     if buttonStatus==1:
-        print("1")
-    elif buttonStatus==2:
-        print("2")
-    elif buttonStatus==3:
-        print("3")
-    elif buttonStatus==4:
-        print("4")
+        numSales = 5
+        mainStructure(numSales)
         
+    elif buttonStatus==2:
+        numSales = 6
+        mainStructure(numSales)
+        
+    elif buttonStatus==3:
+        numSales = 7
+        mainStructure(numSales)
+        
+    elif buttonStatus==4:
+        numSales = 5
+        mainStructure(numSales)
+
 
 
 window.mainloop() 
