@@ -12,9 +12,10 @@ import requests
 import urllib.request
 import time
 from bs4 import BeautifulSoup
+from apiCalls import getAddressList
 
 #User zipcode
-def WebScrapper(zipcode): 
+def WebScrapper(zipcode, latitude, longtitude): 
 
 
     # Set URL's for all of our garage sale websites
@@ -72,5 +73,7 @@ def WebScrapper(zipcode):
         #Take just location
         dates.append(rawDate.partition("\" ")[0])
     
+    formatted_address_list = getAddressList(latitude, longtitude, location)
     
-    return location
+    return location, formatted_address_list
+
