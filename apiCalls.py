@@ -2,35 +2,44 @@ import http.client
 import mimetypes
 import json
 from distanceRequest import getDistance
-def getAddressList(latitude, longitude):
+def getAddressList(latitude, longitude, location):
     """
-    Prints a list of formatted addresses, change the "query" variab;e to the actual thing
+    Prints a list of formatted addresses, change the "query" variable to the actual thing
     """
-    conn = http.client.HTTPSConnection("api.radar.io")
-    payload = ''
-    headers = {
-      'Authorization': 'prj_test_pk_6e76504d47441be5e8ad2fc0dcd6daaa57083aa5 '
-    }
-
-    query = str("eagle" + "%20" + "run")
-    conn.request("GET", "/v1/search/autocomplete?query="+query+"&near=" + str(latitude) + "," + str(longitude) + "&limit=5", payload, headers)
-    res = conn.getresponse()
-    data = res.read().decode("utf-8")
-
-
-    json_data = json.loads(data)
-
-    #print(json_data)
-    addresses = json_data["addresses"]
-
-    d_list = []
-
+    location2 = []
+    for j in location:
+        j = j.replace(" ", "%20")
+        location2.append(j)
+        
+    #print('\nlocation:', location)
     formatted_address_list = []
-    for address in addresses:
-        formatted_address_list.append(address["formattedAddress"])
-        d_list.append((address["latitude"],address["longitude"]))
-        getDistance(latitude, longitude, address["latitude"], address["longitude"])
+    
+    for i in range(5):
+        conn = http.client.HTTPSConnection("api.radar.io")
+        payload = ''
+        headers = {
+          'Authorization': 'prj_test_pk_6e76504d47441be5e8ad2fc0dcd6daaa57083aa5 '
+        }
 
-    print("\nd_list:", d_list)
-    print("formatted_address_list", formatted_address_list)
+        query = str(location2[i])
+        conn.request("GET", "/v1/search/autocomplete?query="+query+"&near=" + str(latitude) + "," + str(longitude) + "&limit=5", payload, headers)
+        res = conn.getresponse()
+        data = res.read().decode("utf-8")
+
+
+        json_data = json.loads(data)
+
+        #print(json_data)
+        addresses = json_data["addresses"]
+
+        d_list = []
+
+        
+        for address in addresses:
+            formatted_address_list.append(address["formattedAddress"])
+            d_list.append((address["latitude"],address["longitude"]))
+            getDistance(latitude, longitude, address["latitude"], address["longitude"])
+
+        #print("\nd_list:", d_list)
+        #print("formatted_address_list", formatted_address_list)
     return formatted_address_list
