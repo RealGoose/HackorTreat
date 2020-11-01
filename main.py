@@ -44,14 +44,7 @@ def mainStructure():
     location, short_address = WebScrapper(92620, json_data["address"]["latitude"], json_data["address"]["longitude"])
 
     #short_address = getAddressList(json_data["address"]["latitude"], json_data["address"]["longitude"])
-    shortAddressIWillUseInTheUI =[]
     print('\n')
-    
-    for i in range(len(short_address)):
-        a = str(short_address[i]).find(",")
-        shortAddressIWillUseInTheUI.append(short_address[i][0:a])
-        #print(shortAddressIWillUseInTheUI)
     print('All addresses:', short_address)
-    return shortAddressIWillUseInTheUI
 
 mainStructure()
