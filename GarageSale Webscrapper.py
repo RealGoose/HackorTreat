@@ -14,9 +14,14 @@ import time
 from bs4 import BeautifulSoup
 from apiCalls import getAddressList
 
-#User zipcode
+
 def WebScrapper(zipcode, latitude, longtitude): 
 
+    #User zipcode
+    zipcode=92614 
+    day=31
+    month=10
+    year=2020
 
     # Set URL's for all of our garage sale websites
         #GarageSaleTracker.com              GST
@@ -52,7 +57,47 @@ def WebScrapper(zipcode, latitude, longtitude):
         #Now lets take the date:
         dateNoLocationWithSpace=rawLocationAddress.partition("<br")[2] #Remove location part
         dateNoSpace=dateNoLocationWithSpace[35:] #removed space
-        dates.append(dateNoSpace.partition("<br")[0])
+        dateRaw=dateNoSpace.partition("<br")[0]
+        #dates.append(dateNoSpace.partition("<br")[0])
+        if "Jan" in dateRaw:
+            index=dateRaw.find("Jan")
+            dateStr="2020"+"-01-"+dateRaw[index+4:index+6]
+        elif "Feb" in dateRaw:
+            index=dateRaw.find("Feb")
+            dateStr="2020"+"-02-"+dateRaw[index+4:index+6]
+        elif "Mar" in dateRaw:
+            index=dateRaw.find("Mar")
+            dateStr="2020"+"-03-"+dateRaw[index+4:index+6] 
+        elif "Apr" in dateRaw:
+            index=dateRaw.find("Apr")
+            dateStr="2020"+"-04-"+dateRaw[index+4:index+6] 
+        elif "May" in dateRaw:
+            index=dateRaw.find("May")
+            dateStr="2020"+"-05-"+dateRaw[index+4:index+6] 
+        elif "June" in dateRaw:
+            index=dateRaw.find("June")
+            dateStr="2020"+"-06-"+dateRaw[index+4:index+6] 
+        elif "Jul" in dateRaw:
+            index=dateRaw.find("Jul")
+            dateStr="2020"+"-07-"+dateRaw[index+4:index+6] 
+        elif "Aug" in dateRaw:
+            index=dateRaw.find("Aug")
+            dateStr="2020"+"-08-"+dateRaw[index+4:index+6] 
+        elif "Sep" in dateRaw:
+            index=dateRaw.find("Sep")
+            dateStr="2020"+"-09-"+dateRaw[index+4:index+6] 
+        elif "oOt" in dateRaw:
+            index=dateRaw.find("Nov")
+            dateStr="2020"+"-10-"+dateRaw[index+4:index+6] 
+        elif "Nov" in dateRaw:
+            index=dateRaw.find("Nov")
+            dateStr="2020"+"-11-"+dateRaw[index+4:index+6] 
+        elif "Dec" in dateRaw:
+            index=dateRaw.find("Dec")
+            dateStr="2020"+"-12-"+dateRaw[index+4:index+6]
+        indexSpace=dateStr.find(" ")
+        dateStr=dateStr[0:-2]+"0"+dateStr[indexSpace+1:indexSpace+2]    
+        dates.append(dateStr)
 
     #YSS
     for address in YSSasSoupOBJ.findAll('span', itemprop="streetAddress"):
@@ -72,8 +117,22 @@ def WebScrapper(zipcode, latitude, longtitude):
 
         #Take just location
         dates.append(rawDate.partition("\" ")[0])
-    
-    formatted_address_list = getAddressList(latitude, longtitude, location)
-    
-    return location, formatted_address_list
 
+
+
+    ### REMOVE ALL THE DATES THAT DON'T MEET OUR DATE ###
+    dateInput=str(year)+"-"+str(month)+"-"+str(day)
+    z=0
+    locationToReturn=[]
+    for i in dates:
+        if(i==dateInput):
+            locationToReturn.append(location[z])
+            z=z+1
+        else:
+            z=z+1
+
+    formatted_address_list = getAddressList(latitude, longtitude, locationToReturn)
+    return locationToReturn, formatted_address_list
+
+
+    print(locationToReturn)
