@@ -3,6 +3,9 @@ import mimetypes
 import json
 from distanceRequest import getDistance
 def getAddressList(latitude, longitude, location):
+
+    latitude = 33.68460
+    longitude = -117.82700
     """
     Prints a list of formatted addresses, change the "query" variable to the actual thing
     """
@@ -22,14 +25,14 @@ def getAddressList(latitude, longitude, location):
         }
 
         query = str(location2[i])
-        conn.request("GET", "/v1/search/autocomplete?query="+query+"&near=" + str(latitude) + "," + str(longitude) + "&limit=5", payload, headers)
+        #print('\n\n', location2[i], '\n\n')
+        conn.request("GET", "/v1/search/autocomplete?query="+query+"&near=" + str(33.68460) + "," + str(-117.82700) + "&limit=1", payload, headers)
         res = conn.getresponse()
+        
         data = res.read().decode("utf-8")
-
 
         json_data = json.loads(data)
 
-        #print(json_data)
         addresses = json_data["addresses"]
 
         d_list = []
