@@ -9,10 +9,13 @@ def getAddressList(latitude, longitude, location):
     """
     Prints a list of formatted addresses, change the "query" variable to the actual thing
     """
+    location3 = []
     location2 = []
     for j in location:
         j = j.replace(" ", "%20")
         location2.append(j)
+        location3.append(j.split('%', 1))
+
         
     #print('\nlocation:', location)
     formatted_address_list = []
@@ -43,6 +46,5 @@ def getAddressList(latitude, longitude, location):
             d_list.append((address["latitude"],address["longitude"]))
             getDistance(latitude, longitude, address["latitude"], address["longitude"])
 
-        #print("\nd_list:", d_list)
-        #print("formatted_address_list", formatted_address_list)
+            
     return formatted_address_list
