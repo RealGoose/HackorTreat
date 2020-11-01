@@ -179,7 +179,6 @@ submit.place(x=800, y=300)
 submit.config(font =("Helvetica", 16, "bold"))
 
 
-window.mainloop() 
 #############################################   USER INPUTS:
 dayInput=day.get()
 monthInput=month.get()
@@ -195,3 +194,5 @@ def Clicked(buttonStatus):
     elif buttonStatus==4:
         print("4")
 
+
+window.mainloop() 
