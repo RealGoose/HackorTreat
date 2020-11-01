@@ -15,13 +15,10 @@ from bs4 import BeautifulSoup
 from apiCalls import getAddressList
 
 
-def WebScrapper(zipcode, latitude, longtitude): 
+def WebScrapper(zipcode, latitude, longtitude, dateInput): 
 
     #User zipcode
     zipcode=92614 
-    day=31
-    month=10
-    year=2020
 
     # Set URL's for all of our garage sale websites
         #GarageSaleTracker.com              GST
@@ -121,7 +118,6 @@ def WebScrapper(zipcode, latitude, longtitude):
 
 
     ### REMOVE ALL THE DATES THAT DON'T MEET OUR DATE ###
-    dateInput=str(year)+"-"+str(month)+"-"+str(day)
     z=0
     locationToReturn=[]
     for i in dates:
